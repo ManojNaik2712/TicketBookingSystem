@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +37,19 @@ public class InventoryService {
                 .venueName(venue.getName())
                 .address(venue.getAddress())
                 .totalCapacity(venue.getTotalCapacity()).build();
+    }
+
+    public EventInventoryRespone getEventInventory(Long eventId) {
+        final Event event=eventRepo.findById(eventId).orElse(null);
+
+        return EventInventoryRespone.builder()
+                .event(event.getName())
+                .venue(event.getVenue())
+                .totalCapacity(event.getLeftCapacity())
+                .ticketPrice(event.getTicketPrice())
+                .eventId(event.getId())
+                .build();
+
     }
 }
 
