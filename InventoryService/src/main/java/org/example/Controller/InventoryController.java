@@ -14,26 +14,32 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class InventoryController {
 
+    private final InventoryService inventoryService;
+
     @Autowired
-    InventoryService inventoryService;
+    public InventoryController(final InventoryService inventoryService) {
+        this.inventoryService = inventoryService;
+    }
 
     @GetMapping("/get/events")
-    public @ResponseBody List<EventInventoryRespone> inventoryGetAllEvents(){
+    public @ResponseBody List<EventInventoryRespone> inventoryGetAllEvents() {
         return inventoryService.getAllevents();
     }
 
     @GetMapping("/get/venue/{venueId}")
-    public VenueInventoryResponse inventoryByVenueId(@PathVariable("venueId") Long venueId){
+    public VenueInventoryResponse inventoryByVenueId(@PathVariable("venueId") Long venueId) {
         return inventoryService.getVenueInformation(venueId);
     }
+
     @GetMapping("/get/event/{eventId}")
-    public @ResponseBody EventInventoryRespone inventoryForEvent(@PathVariable("eventId") Long eventId){
+    public @ResponseBody EventInventoryRespone inventoryForEvent(@PathVariable("eventId") Long eventId) {
         return inventoryService.getEventInventory(eventId);
     }
+
     @PutMapping("/update/event/{eventId}/capacity/{capacity}")
     public ResponseEntity<Void> updateEventCapacity(@PathVariable("eventId") Long eventId,
-                                                    @PathVariable("capacity") Long capacity){
-        inventoryService.updateEventCapacity(eventId,capacity);
+                                                    @PathVariable("capacity") Long ticketBooked) {
+        inventoryService.updateEventCapacity(eventId, ticketBooked);
         return ResponseEntity.ok().build();
     }
 

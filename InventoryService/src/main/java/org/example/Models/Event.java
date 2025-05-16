@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
 @Data
 @Builder
@@ -22,7 +21,6 @@ public class Event {
     private Long totalCapacity;
     private Long leftCapacity;
     private BigDecimal ticketPrice;
-
     @ManyToOne
     @JoinColumn
     private Venue venue;

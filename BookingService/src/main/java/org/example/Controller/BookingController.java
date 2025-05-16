@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/v1")
 public class BookingController {
+    private BookingService bookingService;
+
     @Autowired
-    BookingService bookingService;
+    public BookingController(final BookingService bookingService) {
+        this.bookingService = bookingService;
+    }
 
     @PostMapping(consumes = "application/json",produces = "application/json",path = "/booking")
     public BookingResponse createBooking(@RequestBody BookingRequest request){
