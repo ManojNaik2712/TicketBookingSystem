@@ -51,5 +51,9 @@ public class InventoryService {
                 .build();
 
     }
+
+    public void updateEventCapacity(Long eventId, Long capacity) {
+
+    }
 }
 

@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
-public class BookingResponse {
+public class BookingEvent {
     private Long userId;
     private Long eventId;
     private Long ticketCount;
